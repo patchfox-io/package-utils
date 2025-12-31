@@ -1,0 +1,48 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "type" : "object",
+  "properties" : {
+    "after" : {
+      "type" : "string"
+    },
+    "before" : {
+      "type" : "string"
+    },
+    "dataSource" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "namespace" : {
+          "type" : "string"
+        },
+        "qualifiers" : {
+          "type" : "object"
+        },
+        "scheme" : {
+          "type" : "string"
+        },
+        "subpath" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "version" : {
+          "type" : "string"
+        }
+      }
+    },
+    "editType" : {
+      "type" : "string",
+      "enum" : [ "CREATE", "UPDATE", "DELETE" ]
+    },
+    "isPfRecommendedEdit" : {
+      "type" : "boolean"
+    },
+    "isSameEdit" : {
+      "type" : "boolean"
+    }
+  }
+}
