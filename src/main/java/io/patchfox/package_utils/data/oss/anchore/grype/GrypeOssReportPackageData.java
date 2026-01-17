@@ -1,5 +1,7 @@
 package io.patchfox.package_utils.data.oss.anchore.grype;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -39,6 +41,16 @@ public class GrypeOssReportPackageData extends OssReportPackageData<Report> {
                 if (vulnerability.getFix() != null && vulnerability.getFix().getVersions() != null) {
                     var fixVersions = (List<String>)(Object)vulnerability.getFix().getVersions();
                     ossSummary.setFixedIn(new HashSet<>(fixVersions));
+                }
+
+                // Extract publishedDate from Grype output
+                if (vulnerability.getPublishedDate() != null && !vulnerability.getPublishedDate().isBlank()) {
+                    try {
+                        ZonedDateTime publishedAt = ZonedDateTime.parse(vulnerability.getPublishedDate(), DateTimeFormatter.ISO_DATE_TIME);
+                        ossSummary.setPublishedAt(publishedAt);
+                    } catch (Exception e) {
+                        // If parsing fails, just skip setting publishedAt
+                    }
                 }
 
             }

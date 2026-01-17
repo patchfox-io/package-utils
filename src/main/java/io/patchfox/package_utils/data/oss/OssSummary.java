@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.text.MessageFormat;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
@@ -35,7 +36,8 @@ import java.util.HashSet;
         "description",
         "sources",
         "reporters",
-        "licenses"
+        "licenses",
+        "publishedAt"
 })
 public class OssSummary {
 
@@ -65,6 +67,9 @@ public class OssSummary {
 
     @JsonProperty("fixedIn")
     Set<String> fixedIn = new HashSet<>();
+
+    @JsonProperty("publishedAt")
+    ZonedDateTime publishedAt;
 
 
     //
@@ -156,6 +161,15 @@ public class OssSummary {
 
     public Set<String> getFixedIn() {
         return this.fixedIn;
+    }
+
+    //
+    public void setPublishedAt(ZonedDateTime publishedAt) {
+        this.publishedAt = publishedAt;
+    }
+
+    public ZonedDateTime getPublishedAt() {
+        return this.publishedAt;
     }
 
     //
